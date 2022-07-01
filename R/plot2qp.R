@@ -16,6 +16,7 @@
 #'
 #' @return A plot with discharge and precipitation.
 #' @export
+#' @import ggplot2
 #'
 #' @examples
 #' data(KarstMod_dataset)
@@ -49,7 +50,7 @@ plot2qp <- function(date,
     # y = the center point of each bar
     # maxRange - Precipitation/coeff/2
     geom_tile(aes(y = maxRange - p/coeff/2,
-                  height = •p/coeff,
+                  height = p/coeff,
                   fill = "precip")) +
     # Plot discharge data
     geom_line(aes(y = q, color = "discharge")) +
