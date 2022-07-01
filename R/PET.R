@@ -16,6 +16,8 @@
 #' @export
 #'
 #' @examples
+#' data(KarstMod_dataset)
+#' PET(date = KarstMod_dataset$date, t = KarstMod_dataset$T, latitude = 48)
 
 PET <- function(date, t, method = c("oudin2005", "hargreaves1985", "turc1961"), tmax = NULL, tmin = NULL, rh = NULL, latitude = NULL, krs = 0.17, Rs = NULL, k1 = 100, k2 = 5) {
 
