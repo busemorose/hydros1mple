@@ -63,7 +63,7 @@ plot1v <- function(date,
 
     # Summarise data
     df <- df |>
-      dplyr::group_by(dplyr::across(all_of(group))) |>
+      dplyr::group_by(dplyr::across(dplyr::all_of(group))) |>
       dplyr::summarise(data = dplyr::case_when(type == "mean" ~ mean(data),
                                                type == "sum" ~ sum(data)))
 
