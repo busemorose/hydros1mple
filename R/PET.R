@@ -1,20 +1,23 @@
-#' Title
+#' Calculation of Potential Evapotranspiration (PET) with different methods.
 #'
-#' @param date
-#' @param t
-#' @param method
-#' @param tmax
-#' @param tmin
-#' @param rh
+#' @param date A date vector.
+#' @param t A numeric vector.
+#' @param method A string value. Either "oudin2005", "hargreaves1985" or "turc1961".
 #' @param latitude A numeric value. Latitude (in degrees) of the meteorological station. This is for estimating Ra.
-#' @param krs A numeric value. For global (or solar) radiation calculation, between 0.16 and 0.19
+#' @param krs A numeric value. Radiation adjustment coefficient (generally between 0.16 and 0.19).
+#' @param tmax A numeric vector.
+#' @param tmin A numeric vector.
+#' @param rh A numeric vector.
+#' @param Rs A numeric vector.
+#' @param k1 A numeric value. Used for Oudin's method.
+#' @param k2 A numeric value. Used for Oudin's method.
 #'
-#' @return
+#' @return A numeric vector.
 #' @export
 #'
 #' @examples
 
-PET <- function(date, t, method = c("oudin2005", "hargreaves1985", "turc1961"), tmax = NULL, tmin = NULL, rh = NULL, latitude = NULL, krs = 0.17, Rs = NULL) {
+PET <- function(date, t, method = c("oudin2005", "hargreaves1985", "turc1961"), tmax = NULL, tmin = NULL, rh = NULL, latitude = NULL, krs = 0.17, Rs = NULL, k1 = 100, k2 = 5) {
 
   # Calculate extraterrestrial radiation
 
@@ -38,7 +41,7 @@ PET <- function(date, t, method = c("oudin2005", "hargreaves1985", "turc1961"), 
     if (!all(lengths(list(t)) == length(date)))
       stop("date and t must be specified and with the same length.")
     le <- 2.501 - 0.002361 * t # latent heat of vaporization in MJ.kg-1
-    oudin <- ifelse((t + 5) > 0, (Ra / le) * ((t + 5) / 100), 0)
+    oudin <- ifelse((t + 5) > 0, (Ra / le) * ((t + k2) / k1), 0)
     return(oudin)
   }
 
