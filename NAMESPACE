@@ -2,3 +2,5 @@
 
 export(PET)
 export(import_KarstMod)
+export(plot1v)
+import(ggplot2)
