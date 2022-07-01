@@ -17,3 +17,7 @@ A dataframe.
 \description{
 Import a dataset in KarstMod input format
 }
+\examples{
+path <- system.file("extdata", "KarstMod_dataset.txt", package = "hydros1mple")
+import_KarstMod(path = path)
+}

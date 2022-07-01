@@ -47,3 +47,7 @@ A numeric vector.
 \description{
 Calculation of Potential Evapotranspiration (PET) with different methods.
 }
+\examples{
+data(KarstMod_dataset)
+PET(date = KarstMod_dataset$date, t = KarstMod_dataset$T, latitude = 48)
+}
