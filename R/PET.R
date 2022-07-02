@@ -31,7 +31,7 @@
 #' data(KarstMod_dataset)
 #' PET(date = KarstMod_dataset$date, t = KarstMod_dataset$T, latitude = 48)
 
-PET <- function(date, t, method = c("oudin2005", "hargreaves1985", "turc1961", "haude1954", "tornthwaite_pereira2004"), tmax = NULL, tmin = NULL, rh = NULL, latitude = NULL, krs = 0.17, Rs = NULL, k1 = 100, k2 = 5, f_haude = c(0.26, 0.26, 0.33, 0.39, 0.39, 0.37, 0.35, 0.33, 0.31, 0.26, 0.26, 0.26), k = 0.69) {
+PET <- function(date, t, method = c("oudin2005", "hargreaves_samani1985", "turc1961", "haude1954", "tornthwaite_pereira2004"), tmax = NULL, tmin = NULL, rh = NULL, latitude = NULL, krs = 0.17, Rs = NULL, k1 = 100, k2 = 5, f_haude = c(0.26, 0.26, 0.33, 0.39, 0.39, 0.37, 0.35, 0.33, 0.31, 0.26, 0.26, 0.26), k = 0.69) {
 
   # Calculate extraterrestrial radiation
 
