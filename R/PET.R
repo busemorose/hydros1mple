@@ -1,4 +1,4 @@
-#' Calculation of Potential Evapotranspiration (PET) with different methods.
+#' Calculation of daily Potential Evapotranspiration (PET) with different methods.
 #'
 #' - \insertCite{oudinWhichPotentialEvapotranspiration2005;textual}{hydros1mple}
 #' - \insertCite{hargreavesReferenceCropEvapotranspiration1985;textual}{hydros1mple}
@@ -7,18 +7,18 @@
 #' - \insertCite{haudeZurPraktischenBestimmung1954;textual}{hydros1mple}
 #'
 #' @param date A date vector.
-#' @param t A numeric vector.
+#' @param t A numeric vector of mean daily temperature.
 #' @param method A string value. Either "oudin2005", "hargreaves1985" or "turc1961".
 #' @param latitude A numeric value. Latitude (in degrees) of the meteorological station. This is for estimating Ra.
 #' @param krs A numeric value. Radiation adjustment coefficient (generally between 0.16 and 0.19).
-#' @param tmax A numeric vector.
-#' @param tmin A numeric vector.
-#' @param rh A numeric vector.
-#' @param Rs A numeric vector.
+#' @param tmax A numeric vector of maximum daily temperature.
+#' @param tmin A numeric vector of minimum daily temperature.
+#' @param rh A numeric vector of mean daily relative humidity.
+#' @param Rs A numeric vector of mean daily solar radiation.
 #' @param k1 A numeric value. Used for Oudin's method.
 #' @param k2 A numeric value. Used for Oudin's method.
 #' @param f_haude A numeric vector of one factor for each month (12 in total). Used for Haude's method.
-#' @param k A numeric value. Used for Tornthwaite-Pereira's method.
+#' @param k A numeric value corresponding to the calibration coefficient of the effective temperature. Used for Tornthwaite-Pereira's method (they recommended 0.69).
 #'
 #' @return A numeric vector.
 #' @export
