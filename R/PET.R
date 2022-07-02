@@ -20,7 +20,7 @@
 #' @param f_haude A numeric vector of one factor for each month (12 in total). Used for Haude's method.
 #' @param k A numeric value corresponding to the calibration coefficient of the effective temperature. Used for Tornthwaite-Pereira's method (they recommended 0.69).
 #'
-#' @return A numeric vector.
+#' @return A numeric vector of mean daily potentation evapotranspiration.
 #' @export
 #'
 #' @references{
