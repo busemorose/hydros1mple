@@ -7,7 +7,8 @@
 PET(
   date,
   t,
-  method = c("oudin2005", "hargreaves1985", "turc1961", "haude1954"),
+  method = c("oudin2005", "hargreaves1985", "turc1961", "haude1954",
+    "tornthwaite_pereira2004"),
   tmax = NULL,
   tmin = NULL,
   rh = NULL,
@@ -16,7 +17,8 @@ PET(
   Rs = NULL,
   k1 = 100,
   k2 = 5,
-  f_haude = c(0.26, 0.26, 0.33, 0.39, 0.39, 0.37, 0.35, 0.33, 0.31, 0.26, 0.26, 0.26)
+  f_haude = c(0.26, 0.26, 0.33, 0.39, 0.39, 0.37, 0.35, 0.33, 0.31, 0.26, 0.26, 0.26),
+  k = 0.69
 )
 }
 \arguments{
@@ -43,6 +45,8 @@ PET(
 \item{k2}{A numeric value. Used for Oudin's method.}
 
 \item{f_haude}{A numeric vector of one factor for each month (12 in total). Used for Haude's method.}
+
+\item{k}{A numeric value. Used for Tornthwaite-Pereira's method.}
 }
 \value{
 A numeric vector.

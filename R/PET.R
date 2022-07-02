@@ -12,7 +12,7 @@
 #' @param k1 A numeric value. Used for Oudin's method.
 #' @param k2 A numeric value. Used for Oudin's method.
 #' @param f_haude A numeric vector of one factor for each month (12 in total). Used for Haude's method.
-#' @param k
+#' @param k A numeric value. Used for Tornthwaite-Pereira's method.
 #'
 #' @return A numeric vector.
 #' @export
@@ -21,7 +21,7 @@
 #' data(KarstMod_dataset)
 #' PET(date = KarstMod_dataset$date, t = KarstMod_dataset$T, latitude = 48)
 
-PET <- function(date, t, method = c("oudin2005", "hargreaves1985", "turc1961", "haude1954"), tmax = NULL, tmin = NULL, rh = NULL, latitude = NULL, krs = 0.17, Rs = NULL, k1 = 100, k2 = 5, f_haude = c(0.26, 0.26, 0.33, 0.39, 0.39, 0.37, 0.35, 0.33, 0.31, 0.26, 0.26, 0.26), k = 0.69) {
+PET <- function(date, t, method = c("oudin2005", "hargreaves1985", "turc1961", "haude1954", "tornthwaite_pereira2004"), tmax = NULL, tmin = NULL, rh = NULL, latitude = NULL, krs = 0.17, Rs = NULL, k1 = 100, k2 = 5, f_haude = c(0.26, 0.26, 0.33, 0.39, 0.39, 0.37, 0.35, 0.33, 0.31, 0.26, 0.26, 0.26), k = 0.69) {
 
   # Calculate extraterrestrial radiation
 
@@ -106,6 +106,7 @@ PET <- function(date, t, method = c("oudin2005", "hargreaves1985", "turc1961", "
                                   ifelse(tef > 0,
                                          16 * ((10 * tef) / I) ^ a * kd,
                                          0))
+    return(tornthwaite_pereira)
   }
 }
 
