@@ -52,9 +52,20 @@ PET(
 A numeric vector.
 }
 \description{
-Calculation of Potential Evapotranspiration (PET) with different methods.
+\itemize{
+\item \insertCite{oudinWhichPotentialEvapotranspiration2005;textual}{hydros1mple}
+\item \insertCite{hargreavesReferenceCropEvapotranspiration1985;textual}{hydros1mple}
+\item \insertCite{turcEvaluationBesoinsEau1961;textual}{hydros1mple}
+\item \insertCite{thornthwaiteApproachRationalClassification1948;textual}{hydros1mple} adapted by \insertCite{pereiraAdaptationThornthwaiteScheme2004;textual}{hydros1mple}
+\item \insertCite{haudeZurPraktischenBestimmung1954;textual}{hydros1mple}
+}
 }
 \examples{
 data(KarstMod_dataset)
 PET(date = KarstMod_dataset$date, t = KarstMod_dataset$T, latitude = 48)
+}
+\references{
+{
+\insertAllCited{}
+}
 }

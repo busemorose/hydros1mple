@@ -1,5 +1,11 @@
 #' Calculation of Potential Evapotranspiration (PET) with different methods.
 #'
+#' - \insertCite{oudinWhichPotentialEvapotranspiration2005;textual}{hydros1mple}
+#' - \insertCite{hargreavesReferenceCropEvapotranspiration1985;textual}{hydros1mple}
+#' - \insertCite{turcEvaluationBesoinsEau1961;textual}{hydros1mple}
+#' - \insertCite{thornthwaiteApproachRationalClassification1948;textual}{hydros1mple} adapted by \insertCite{pereiraAdaptationThornthwaiteScheme2004;textual}{hydros1mple}
+#' - \insertCite{haudeZurPraktischenBestimmung1954;textual}{hydros1mple}
+#'
 #' @param date A date vector.
 #' @param t A numeric vector.
 #' @param method A string value. Either "oudin2005", "hargreaves1985" or "turc1961".
@@ -16,6 +22,10 @@
 #'
 #' @return A numeric vector.
 #' @export
+#'
+#' @references{
+#'   \insertAllCited{}
+#' }
 #'
 #' @examples
 #' data(KarstMod_dataset)
