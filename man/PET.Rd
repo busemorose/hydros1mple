@@ -36,7 +36,7 @@ PET(
 
 \item{latitude}{A numeric value. Latitude (in degrees) of the meteorological station. This is for estimating Ra.}
 
-\item{krs}{A numeric value. Radiation adjustment coefficient (generally between 0.16 and 0.19).}
+\item{krs}{A numeric value for estimating Rs. Radiation adjustment coefficient (generally between 0.16 and 0.19).}
 
 \item{Rs}{A numeric vector of mean daily solar radiation.}
 
@@ -56,11 +56,11 @@ This function is a wrapper for several methods of estimation of daily PET. The a
 }
 \details{
 \itemize{
-\item \insertCite{oudinWhichPotentialEvapotranspiration2005;textual}{hydros1mple}
-\item \insertCite{hargreavesReferenceCropEvapotranspiration1985;textual}{hydros1mple}
-\item \insertCite{turcEvaluationBesoinsEau1961;textual}{hydros1mple}
-\item \insertCite{thornthwaiteApproachRationalClassification1948;textual}{hydros1mple} adapted by \insertCite{pereiraAdaptationThornthwaiteScheme2004;textual}{hydros1mple}
-\item \insertCite{haudeZurPraktischenBestimmung1954;textual}{hydros1mple}
+\item \insertCite{oudinWhichPotentialEvapotranspiration2005;textual}{hydros1mple}. Parameters: \emph{t}, \emph{latitude}, \emph{k1}, \emph{k2}.
+\item \insertCite{hargreavesReferenceCropEvapotranspiration1985;textual}{hydros1mple}. Parameters: \emph{t}, \emph{tmin}, \emph{tmax}, \emph{latitude}
+\item \insertCite{turcEvaluationBesoinsEau1961;textual}{hydros1mple}.  Parameters: \emph{t}, \emph{tmin}, \emph{tmax}, \emph{latitude}, \emph{rh}, \emph{krs}.
+\item \insertCite{thornthwaiteApproachRationalClassification1948;textual}{hydros1mple} adapted by \insertCite{pereiraAdaptationThornthwaiteScheme2004;textual}{hydros1mple}.  Parameters: \emph{t}, \emph{tmin}, \emph{tmax}, \emph{k}, \emph{latitude}.
+\item \insertCite{haudeZurPraktischenBestimmung1954;textual}{hydros1mple}.  Parameters: \emph{t}, \emph{rh}, \emph{f_haude}.
 }
 
 \insertCite{xiangSimilarityDifferencePotential2020;textual}{hydros1mple} proposed a review of PET methods with a lot of details and references (which can help to understand the equation).

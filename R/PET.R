@@ -2,11 +2,11 @@
 #'
 #' This function is a wrapper for several methods of estimation of daily PET. The arguments can be specific to one method and are often set to a default value found in the literature.
 #'
-#' - \insertCite{oudinWhichPotentialEvapotranspiration2005;textual}{hydros1mple}
-#' - \insertCite{hargreavesReferenceCropEvapotranspiration1985;textual}{hydros1mple}
-#' - \insertCite{turcEvaluationBesoinsEau1961;textual}{hydros1mple}
-#' - \insertCite{thornthwaiteApproachRationalClassification1948;textual}{hydros1mple} adapted by \insertCite{pereiraAdaptationThornthwaiteScheme2004;textual}{hydros1mple}
-#' - \insertCite{haudeZurPraktischenBestimmung1954;textual}{hydros1mple}
+#' - \insertCite{oudinWhichPotentialEvapotranspiration2005;textual}{hydros1mple}. Parameters: *t*, *latitude*, *k1*, *k2*.
+#' - \insertCite{hargreavesReferenceCropEvapotranspiration1985;textual}{hydros1mple}. Parameters: *t*, *tmin*, *tmax*, *latitude*.
+#' - \insertCite{turcEvaluationBesoinsEau1961;textual}{hydros1mple}.  Parameters: *t*, *tmin*, *tmax*, *latitude*, *rh*, *krs*.
+#' - \insertCite{thornthwaiteApproachRationalClassification1948;textual}{hydros1mple} adapted by \insertCite{pereiraAdaptationThornthwaiteScheme2004;textual}{hydros1mple}.  Parameters: *t*, *tmin*, *tmax*, *k*, *latitude*.
+#' - \insertCite{haudeZurPraktischenBestimmung1954;textual}{hydros1mple}.  Parameters: *t*, *rh*, *f_haude*.
 #'
 #'  \insertCite{xiangSimilarityDifferencePotential2020;textual}{hydros1mple} proposed a review of PET methods with a lot of details and references (which can help to understand the equation).
 #'
@@ -14,7 +14,7 @@
 #' @param t A numeric vector of mean daily temperature.
 #' @param method A string value. Either "oudin2005", "hargreaves1985" or "turc1961".
 #' @param latitude A numeric value. Latitude (in degrees) of the meteorological station. This is for estimating Ra.
-#' @param krs A numeric value. Radiation adjustment coefficient (generally between 0.16 and 0.19).
+#' @param krs A numeric value for estimating Rs. Radiation adjustment coefficient (generally between 0.16 and 0.19).
 #' @param tmax A numeric vector of maximum daily temperature.
 #' @param tmin A numeric vector of minimum daily temperature.
 #' @param rh A numeric vector of mean daily relative humidity.
