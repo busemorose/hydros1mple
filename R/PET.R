@@ -6,6 +6,8 @@
 #' - \insertCite{thornthwaiteApproachRationalClassification1948;textual}{hydros1mple} adapted by \insertCite{pereiraAdaptationThornthwaiteScheme2004;textual}{hydros1mple}
 #' - \insertCite{haudeZurPraktischenBestimmung1954;textual}{hydros1mple}
 #'
+#'  \insertCite{xiangSimilarityDifferencePotential2020;textual}{hydros1mple} proposed a review of PET methods with a lot of details and references (which can help to understand the equation).
+#'
 #' @param date A date vector.
 #' @param t A numeric vector of mean daily temperature.
 #' @param method A string value. Either "oudin2005", "hargreaves1985" or "turc1961".

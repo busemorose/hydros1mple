@@ -60,6 +60,9 @@ A numeric vector of mean daily potentation evapotranspiration.
 \item \insertCite{haudeZurPraktischenBestimmung1954;textual}{hydros1mple}
 }
 }
+\details{
+\insertCite{xiangSimilarityDifferencePotential2020;textual}{hydros1mple} proposed a review of PET methods with a lot of details and references (which can help to understand the equation).
+}
 \examples{
 data(KarstMod_dataset)
 PET(date = KarstMod_dataset$date, t = KarstMod_dataset$T, latitude = 48)
