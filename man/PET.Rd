@@ -7,7 +7,7 @@
 PET(
   date,
   t,
-  method = c("oudin2005", "hargreaves1985", "turc1961", "haude1954",
+  method = c("oudin2005", "hargreaves_samani1985", "turc1961", "haude1954",
     "tornthwaite_pereira2004"),
   tmax = NULL,
   tmin = NULL,
