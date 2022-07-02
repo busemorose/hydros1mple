@@ -56,17 +56,15 @@ PET <- function(date, t, method = c("oudin2005", "hargreaves_samani1985", "turc1
       stop("date and t must be specified and with the same length.")
 
     le <- 2.501 - 0.002361 * t # latent heat of vaporization in MJ.kg-1
-    oudin <- ifelse((t + 5) > 0, (Ra / le) * ((t + k2) / k1), 0)
-    return(oudin)
+    pet <- ifelse((t + 5) > 0, (Ra / le) * ((t + k2) / k1), 0)
   }
 
   if (method == "hargreaves_samani1985") {
     if (!all(lengths(list(t, tmin, tmax)) == length(date)))
       stop("date, t, tmin and tmax must be specified and with the same length.")
-  # FAO: The corresponding equivalent evaporation in mm day-1 is obtained by
-  # multiplying Ra by 0.408 (Equation 20).
-    hargreaves <- 0.0023 * Ra * 0.408 * sqrt(tmax - tmin) * (t + 17.8)
-    return(hargreaves)
+    # FAO: The corresponding equivalent evaporation in mm day-1 is obtained by
+    # multiplying Ra by 0.408 (Equation 20).
+    pet <- 0.0023 * Ra * 0.408 * sqrt(tmax - tmin) * (t + 17.8)
   }
 
   if (method == "turc1961") {
@@ -80,11 +78,9 @@ PET <- function(date, t, method = c("oudin2005", "hargreaves_samani1985", "turc1
       message("Rs was estimated using the FAO guide for PET")
     }
 
-    turc <- ifelse(rh >= 50,
-                   0.013 * (t / (t + 15)) * (Rs * 23.9 + 50),
-                   0.013 * (t / (t + 15)) * (Rs * 23.9 + 50) * (1 + (50 - rh) / 70))
-    turc <- ifelse(turc < 0, 0, turc)
-    return(turc)
+    pet <- ifelse(rh >= 50,
+                  0.013 * (t / (t + 15)) * (Rs * 23.9 + 50),
+                  0.013 * (t / (t + 15)) * (Rs * 23.9 + 50) * (1 + (50 - rh) / 70))
   }
 
   if (method == "haude1954") {
@@ -95,7 +91,7 @@ PET <- function(date, t, method = c("oudin2005", "hargreaves_samani1985", "turc1
       dplyr::mutate(month = lubridate::month(date),
                     f = f_haude[month],
                     PET = f * 6.11 * 10 ^ ((7.48 * t) / (237 + t)) * (1 - rh / 100))
-    return(haude$PET)
+    pet <- haude$PET
   }
 
   if (method == "tornthwaite_pereira2004") {
@@ -112,12 +108,14 @@ PET <- function(date, t, method = c("oudin2005", "hargreaves_samani1985", "turc1
     a <- (67.5e-8 * I ^ 3) - (77.1e-6 * I ^ 2) + (0.0179 * I) + 0.492
     kd <- N / 360
     tef <- 0.5 * k * (3 * tmax - tmin)
-    tornthwaite_pereira <- ifelse(tef > 26,
-                                  kd * (-415.85 + 32.24 * tef - 0.43 * tef ^2),
-                                  ifelse(tef > 0,
-                                         16 * ((10 * tef) / I) ^ a * kd,
-                                         0))
-    return(tornthwaite_pereira)
+    pet <- ifelse(tef > 26,
+                  kd * (-415.85 + 32.24 * tef - 0.43 * tef ^2),
+                  ifelse(tef > 0,
+                         16 * ((10 * tef) / I) ^ a * kd,
+                         0))
   }
+
+  pet <- ifelse(pet < 0, 0, pet)
+  return(pet)
 }
 
