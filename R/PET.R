@@ -1,5 +1,7 @@
 #' Calculation of daily Potential Evapotranspiration (PET) with different methods.
 #'
+#' This function is a wrapper for several methods of estimation of daily PET. The arguments can be specific to one method and are often set to a default value found in the literature.
+#'
 #' - \insertCite{oudinWhichPotentialEvapotranspiration2005;textual}{hydros1mple}
 #' - \insertCite{hargreavesReferenceCropEvapotranspiration1985;textual}{hydros1mple}
 #' - \insertCite{turcEvaluationBesoinsEau1961;textual}{hydros1mple}

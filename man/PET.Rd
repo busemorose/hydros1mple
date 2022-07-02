@@ -52,6 +52,9 @@ PET(
 A numeric vector of mean daily potentation evapotranspiration.
 }
 \description{
+This function is a wrapper for several methods of estimation of daily PET. The arguments can be specific to one method and are often set to a default value found in the literature.
+}
+\details{
 \itemize{
 \item \insertCite{oudinWhichPotentialEvapotranspiration2005;textual}{hydros1mple}
 \item \insertCite{hargreavesReferenceCropEvapotranspiration1985;textual}{hydros1mple}
@@ -59,8 +62,7 @@ A numeric vector of mean daily potentation evapotranspiration.
 \item \insertCite{thornthwaiteApproachRationalClassification1948;textual}{hydros1mple} adapted by \insertCite{pereiraAdaptationThornthwaiteScheme2004;textual}{hydros1mple}
 \item \insertCite{haudeZurPraktischenBestimmung1954;textual}{hydros1mple}
 }
-}
-\details{
+
 \insertCite{xiangSimilarityDifferencePotential2020;textual}{hydros1mple} proposed a review of PET methods with a lot of details and references (which can help to understand the equation).
 }
 \examples{
