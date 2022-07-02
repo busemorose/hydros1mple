@@ -2,7 +2,7 @@
 % Please edit documentation in R/PET.R
 \name{PET}
 \alias{PET}
-\title{Calculation of Potential Evapotranspiration (PET) with different methods.}
+\title{Calculation of daily Potential Evapotranspiration (PET) with different methods.}
 \usage{
 PET(
   date,
@@ -24,21 +24,21 @@ PET(
 \arguments{
 \item{date}{A date vector.}
 
-\item{t}{A numeric vector.}
+\item{t}{A numeric vector of mean daily temperature.}
 
 \item{method}{A string value. Either "oudin2005", "hargreaves1985" or "turc1961".}
 
-\item{tmax}{A numeric vector.}
+\item{tmax}{A numeric vector of maximum daily temperature.}
 
-\item{tmin}{A numeric vector.}
+\item{tmin}{A numeric vector of minimum daily temperature.}
 
-\item{rh}{A numeric vector.}
+\item{rh}{A numeric vector of mean daily relative humidity.}
 
 \item{latitude}{A numeric value. Latitude (in degrees) of the meteorological station. This is for estimating Ra.}
 
 \item{krs}{A numeric value. Radiation adjustment coefficient (generally between 0.16 and 0.19).}
 
-\item{Rs}{A numeric vector.}
+\item{Rs}{A numeric vector of mean daily solar radiation.}
 
 \item{k1}{A numeric value. Used for Oudin's method.}
 
@@ -46,10 +46,10 @@ PET(
 
 \item{f_haude}{A numeric vector of one factor for each month (12 in total). Used for Haude's method.}
 
-\item{k}{A numeric value. Used for Tornthwaite-Pereira's method.}
+\item{k}{A numeric value corresponding to the calibration coefficient of the effective temperature. Used for Tornthwaite-Pereira's method (they recommended 0.69).}
 }
 \value{
-A numeric vector.
+A numeric vector of mean daily potentation evapotranspiration.
 }
 \description{
 \itemize{
