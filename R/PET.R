@@ -63,7 +63,8 @@ PET <- function(date, t, method = c("oudin2005", "hargreaves1985", "turc1961", "
   if (method == "hargreaves_samani1985") {
     if (!all(lengths(list(t, tmin, tmax)) == length(date)))
       stop("date, t, tmin and tmax must be specified and with the same length.")
-
+  # FAO: The corresponding equivalent evaporation in mm day-1 is obtained by
+  # multiplying Ra by 0.408 (Equation 20).
     hargreaves <- 0.0023 * Ra * 0.408 * sqrt(tmax - tmin) * (t + 17.8)
     return(hargreaves)
   }
