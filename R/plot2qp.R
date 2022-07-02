@@ -58,7 +58,7 @@ plot2qp <- function(date,
     # to display the original precipitation units
     scale_x_date(date_breaks = date_breaks, date_labels = date_labels,
                  expand = expansion(mult = c(0.01, 0.01))) +
-    scale_y_continuous(limit = c(0, maxRange),
+    scale_y_continuous(limits = c(0, maxRange),
                        expand = expansion(mult = c(0, 0)),
                        sec.axis = sec_axis(trans = ~(. - maxRange) * -coeff,
                                            name = ylab2,
