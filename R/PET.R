@@ -11,6 +11,7 @@
 #' @param Rs A numeric vector.
 #' @param k1 A numeric value. Used for Oudin's method.
 #' @param k2 A numeric value. Used for Oudin's method.
+#' @param f_haude A numeric vector of one factor for each month (12 in total). Used for Haude's method.
 #'
 #' @return A numeric vector.
 #' @export
@@ -19,7 +20,7 @@
 #' data(KarstMod_dataset)
 #' PET(date = KarstMod_dataset$date, t = KarstMod_dataset$T, latitude = 48)
 
-PET <- function(date, t, method = c("oudin2005", "hargreaves1985", "turc1961"), tmax = NULL, tmin = NULL, rh = NULL, latitude = NULL, krs = 0.17, Rs = NULL, k1 = 100, k2 = 5) {
+PET <- function(date, t, method = c("oudin2005", "hargreaves1985", "turc1961", "haude1954"), tmax = NULL, tmin = NULL, rh = NULL, latitude = NULL, krs = 0.17, Rs = NULL, k1 = 100, k2 = 5, f_haude = c(0.26, 0.26, 0.33, 0.39, 0.39, 0.37, 0.35, 0.33, 0.31, 0.26, 0.26, 0.26)) {
 
   # Calculate extraterrestrial radiation
 
@@ -69,6 +70,17 @@ PET <- function(date, t, method = c("oudin2005", "hargreaves1985", "turc1961"), 
                    0.013 * (t / (t + 15)) * (Rs * 23.9 + 50) * (1 + (50 - rh) / 70))
     turc <- ifelse(turc < 0, 0, turc)
     return(turc)
+  }
+
+  if (method == "haude1954") {
+    if (!all(lengths(list(t, rh)) == length(date)))
+      stop("date, t, and rh must be specified and with the same length.")
+
+    haude <- data.frame(date, t, rh) |>
+      dplyr::mutate(month = lubridate::month(date),
+                    f = f_haude[month],
+                    PET = f * 6.11 * 10 ^ ((7.48 * t) / (237 + t)) * (1 - rh / 100))
+    return(haude$PET)
   }
 }
 
