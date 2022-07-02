@@ -44,7 +44,7 @@ PET(
 
 \item{k2}{A numeric value. Used for Oudin's method.}
 
-\item{f_haude}{A numeric vector of one factor for each month (12 in total). Used for Haude's method.}
+\item{f_haude}{A numeric vector of one factor for each month (12 in total). Used for Haude's method. Detailed in german \url{https://www.climate-service-center.de/products_and_publications/publications/detail/063341/index.php.de}.}
 
 \item{k}{A numeric value corresponding to the calibration coefficient of the effective temperature. Used for Tornthwaite-Pereira's method (they recommended 0.69).}
 }
@@ -57,7 +57,7 @@ This function is a wrapper for several methods of estimation of daily PET. The a
 \details{
 \itemize{
 \item \insertCite{oudinWhichPotentialEvapotranspiration2005;textual}{hydros1mple}. Parameters: \emph{t}, \emph{latitude}, \emph{k1}, \emph{k2}.
-\item \insertCite{hargreavesReferenceCropEvapotranspiration1985;textual}{hydros1mple}. Parameters: \emph{t}, \emph{tmin}, \emph{tmax}, \emph{latitude}
+\item \insertCite{hargreavesReferenceCropEvapotranspiration1985;textual}{hydros1mple}. Parameters: \emph{t}, \emph{tmin}, \emph{tmax}, \emph{latitude}.
 \item \insertCite{turcEvaluationBesoinsEau1961;textual}{hydros1mple}.  Parameters: \emph{t}, \emph{tmin}, \emph{tmax}, \emph{latitude}, \emph{rh}, \emph{krs}.
 \item \insertCite{thornthwaiteApproachRationalClassification1948;textual}{hydros1mple} adapted by \insertCite{pereiraAdaptationThornthwaiteScheme2004;textual}{hydros1mple}.  Parameters: \emph{t}, \emph{tmin}, \emph{tmax}, \emph{k}, \emph{latitude}.
 \item \insertCite{haudeZurPraktischenBestimmung1954;textual}{hydros1mple}.  Parameters: \emph{t}, \emph{rh}, \emph{f_haude}.
