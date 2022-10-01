@@ -44,7 +44,7 @@ PET(
 
 \item{k2}{A numeric value. Used for Oudin's method.}
 
-\item{f_haude}{A numeric vector of one factor for each month (12 in total). Used for Haude's method. Detailed in german \url{https://www.climate-service-center.de/products_and_publications/publications/detail/063341/index.php.de}.}
+\item{f_haude}{A numeric vector of one factor for each month (12 in total). Used for Haude's method. Detailed in german \url{https://www.climate-service-center.de/products_and_publications/publications/detail/063341/index.php.de}. Default values correspond to "unknown land surface".}
 
 \item{k}{A numeric value corresponding to the calibration coefficient of the effective temperature. Used for Tornthwaite-Pereira's method (they recommended 0.69).}
 }
