@@ -73,7 +73,7 @@ mgl_to_meq <- function(data, ions) {
     ion_mm <- paste0(ion, "_mm")
 
     data <- data %>%
-      mutate({{ ion_meq }} := .data[[ion]] * !! sym(ion_mm))
+      dplyr::mutate({{ ion_meq }} := .data[[ion]] * !! sym(ion_mm))
   }
 
   return(data)

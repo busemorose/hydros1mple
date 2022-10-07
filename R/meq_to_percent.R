@@ -24,7 +24,7 @@ meq_to_percent <- function (data,
   # Calculate total cations and anions
   data <- data %>%
     dplyr::rowwise() %>%
-    mutate(
+    dplyr::mutate(
       total_cation = sum(!!!syms(paste0(cations, "_meq"))),
       total_anion = sum(!!!syms(paste0(anions, "_meq")))
     )
@@ -41,7 +41,7 @@ meq_to_percent <- function (data,
     ion_meq_p <- paste0(ion, "_meq_p")
 
     data <- data %>%
-      mutate({{ ion_meq_p }} := 100 * (.data[[ion_meq]] / .data[[type]]))
+      dplyr::mutate({{ ion_meq_p }} := 100 * (.data[[ion_meq]] / .data[[type]]))
   }
 
   return(data)
