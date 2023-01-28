@@ -29,10 +29,10 @@ run_snow_routine <- function(precip, temp, param, subcatchment_table = NULL) {
     # for each subcatchment
     for (i in 1:n_catchment) {
       # get T vector with corresponding shift with temp_shift value
-      temp <- temp + subcatchment_table$temp_shift[i]
+      temp_sub <- temp + subcatchment_table$temp_shift[i]
 
       # calculate snow routine
-      snow_routine_results <- snow_routine(temp, precip, param)
+      snow_routine_results <- snow_routine(temp_sub, precip, param)
 
       # calculate snow routine output with corresponding proportion with proportion value
       subc_results[[i]] <- snow_routine_results$P * subcatchment_table$proportion[i]
