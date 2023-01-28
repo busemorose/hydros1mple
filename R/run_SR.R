@@ -7,7 +7,6 @@
 #'
 #' @return A vector of the output of the snow routine (Psr).
 #' @export
-#' @import ggplot2
 
 run_snow_routine <- function(precip, temp, param, subcatchment_table = NULL) {
 
