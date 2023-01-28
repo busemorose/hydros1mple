@@ -16,8 +16,7 @@ run_snow_routine <- function(precip, temp, param, subcatchment_table = NULL) {
     # if the user decides to provide subcatchments
     # get table
     subcatchment_table <- read.delim(subcatchment_table,
-                                     sep = "\t",
-                                     col.names = TRUE)
+                                     sep = "\t")
 
     # apply snow routine for each subcatchment
     n_catchment <- max(subcatchment_table$id)
