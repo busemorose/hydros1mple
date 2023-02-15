@@ -10,8 +10,24 @@
 #' path <- system.file("extdata", "KarstMod_dataset.txt", package = "hydros1mple")
 #' import_KarstMod(path = path)
 
-import_KarstMod <- function(path, version = c(3, 2)) {
-  x <- utils::read.delim(path)
-  x$date <- as.Date(as.character(x$date), "%Y%m%d")
-  return(x)
+import_KarstMod <- function(path, version = c("3", "2")) {
+
+  # Get matching arguments
+  version <- match.arg(version)
+
+  # Import dataset
+  if (version == "3") {
+
+    x <- utils::read.delim(path)
+    x$date <- as.Date(as.character(x$date), "%Y%m%d")
+    return(x)
+
+  } else if (version == "2") {
+
+    x <- utils::read.delim(path)
+    names(x)[names(x) == "X.date"] <- "date"
+    x$date <- as.Date(as.character(x$date), "%Y%m%d")
+    return(x)
+
+  }
 }
