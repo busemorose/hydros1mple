@@ -16,3 +16,16 @@ devtools::install_github("busemorose/hydros1mple") # install hydros1mple package
 ``` r
 library(hydros1mple)
 ```
+
+## Functions
+
+- `import_KarstMod()`: import KarstMod data input files
+- `PET()`: calculate potential evapotranspiration with different methods
+- `plot1v()`: generate plot of different variables (discharge, precipitation, temperature, potential evapotranspiration)
+- `plot2qp()`: generate plot of discharge-precipitation (double y-axis)
+- `mgl_to_meq()`: convert mg/L to meq/L
+- `meq_to_percent()`: convert meq/L to % (according to total anion/cation)
+- `transform_piper_data()`: transform data in mg/L to coordinates on the Piper diagram
+- `blank_ggplot_piper()`: empty Piper diagram
+- `snow_routine()`: snow routine with temperature, precipitation and snow parameters
+- `run_snow_routine()`: run the snow routine with subcatchments
