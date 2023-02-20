@@ -29,3 +29,4 @@ library(hydros1mple)
 - `blank_ggplot_piper()`: empty Piper diagram
 - `snow_routine()`: snow routine with temperature, precipitation and snow parameters
 - `run_snow_routine()`: run the snow routine with subcatchments
+- `score()`: calculate different performance criteria between sim and obs
