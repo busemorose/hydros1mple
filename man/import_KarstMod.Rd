@@ -4,7 +4,7 @@
 \alias{import_KarstMod}
 \title{Import a dataset in KarstMod input format}
 \usage{
-import_KarstMod(path, version = c(3, 2))
+import_KarstMod(path, version = c("3", "2"))
 }
 \arguments{
 \item{path}{Path to file.}
