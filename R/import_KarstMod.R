@@ -18,13 +18,13 @@ import_KarstMod <- function(path, version = c("3", "2")) {
   # Import dataset
   if (version == "3") {
 
-    x <- utils::read.delim(path)
+    x <- utils::read.delim(path, na.strings = c("NA", "INTERP", "NOINTERP"))
     x$date <- as.Date(as.character(x$date), "%Y%m%d")
     return(x)
 
   } else if (version == "2") {
 
-    x <- utils::read.delim(path)
+    x <- utils::read.delim(path, na.strings = c("NA", "INTERP", "NOINTERP"))
     names(x)[names(x) == "X.date"] <- "date"
     x$date <- as.Date(as.character(x$date), "%Y%m%d")
     return(x)
