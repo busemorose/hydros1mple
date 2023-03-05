@@ -2,7 +2,7 @@
 
 export(PET)
 export(blank_ggplot_piper)
-export(import_KarstMod)
+export(import_km)
 export(meq_to_percent)
 export(mgl_to_meq)
 export(plot1v)

@@ -19,7 +19,7 @@ library(hydros1mple)
 
 ## Functions
 
-- `import_KarstMod()`: import KarstMod data input files
+- `import_km()`: import KarstMod data input files
 - `PET()`: calculate potential evapotranspiration with different methods
 - `plot1v()`: generate plot of different variables (discharge, precipitation, temperature, potential evapotranspiration)
 - `plot2qp()`: generate plot of discharge-precipitation (double y-axis)
