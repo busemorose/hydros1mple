@@ -115,5 +115,5 @@ plot1v <- function(date,
     xlab(xlab) +
     ylab(ylab) +
     ggtitle(title) +
-    theme_bw()
+    theme_bw(base_size = 16)
 }
