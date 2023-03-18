@@ -102,7 +102,7 @@ score <- function(sim,
   if ("B_ratio" %in% crit)
     B_ratio <- min(c(B_pos, B_neg) / max(c(B_pos, B_neg)))
   if ("B_vol" %in% crit)
-    B_vol <- round(((B_pos + B_neg) / q_sum) * 100, 1)
+    B_vol <- ((B_pos + B_neg) / q_sum) * 100
 
   # Store desired criteria
   for (c in crit) {
