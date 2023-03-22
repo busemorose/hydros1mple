@@ -31,3 +31,4 @@ library(hydros1mple)
 - `run_snow_routine()`: run the snow routine with subcatchments
 - `score()`: calculate different performance criteria between sim and obs
 - `sample_color()`: get *n* random colors with or without including grey shades
+- `km_properties()`: extract information from KarstMod *.properties* files

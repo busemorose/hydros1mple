@@ -3,6 +3,7 @@
 export(PET)
 export(blank_ggplot_piper)
 export(import_km)
+export(km_properties)
 export(meq_to_percent)
 export(mgl_to_meq)
 export(plot1v)
