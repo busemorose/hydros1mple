@@ -34,9 +34,21 @@ km_properties <- function(path) {
     out[[paste0("wobj-elt-name", i)]] <-
       gsub(".*=", "", file[grepl(paste0("run-parameters.wobj-function.f", i, ".elt-name="), file)])
     out[[paste0("wobj-parameters", i)]] <-
-      gsub(".*=", "", file[grepl(paste0("run-parameters.wobj-function.f", i, ".parameters="), file)])
+      gsub("\\\\", "", gsub(".*parameters=", "",
+                            file[grepl(paste0("run-parameters.wobj-function.f", i, ".parameters="), file)]))
     out[[paste0("wobj-w", i)]] <-
       gsub(".*=", "", file[grepl(paste0("run-parameters.wobj-function.f", i, ".w="), file)])
+
+    out[["wobj"]] <-
+      paste0(round(as.numeric(out[[paste0("wobj-w", i)]]), 3), " * ",
+             gsub(".*obj.", "", out[[paste0("wobj-class", i)]]),
+             if (out[[paste0("wobj-parameters", i)]] != "") paste0("[",
+                                                                 out[[paste0("wobj-parameters", i)]],
+                                                                 "]"), "(",
+             out[[paste0("wobj-converter", i)]], "(",
+             out[[paste0("wobj-elt-name", i)]], "))",
+             if (i < (length(x) / 5)) " + ")
+
   }
 
   return(out)
