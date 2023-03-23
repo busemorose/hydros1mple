@@ -4,17 +4,19 @@
 \alias{snow_routine}
 \title{Snow routine with P and T data}
 \usage{
-snow_routine(temp, prec, param)
+snow_routine(temp, prec, srad, param)
 }
 \arguments{
 \item{temp}{A numeric vector for temperature}
 
+\item{srad}{A numeric vector for clear-sky solar radiation}
+
 \item{param}{A numeric vector for model parameters: 1. Ts = threshold temperature \link{C}; 2. MF = melt factor \link{mm/C}; 3. CFR = refreezing factor \link{-}; 4. CWHv= Water holding capacity of snow \link{-}}
 
-\item{precip}{A numeric vector for precipitation.}
+\item{precip}{A numeric vector for precipitation}
 }
 \value{
-A list of the output of the snow routine, with P (redistributed precipitation), v (solid volume), vl (liquid volume) and snow (snow).
+A list of the output of the snow routine, with P (redistributed precipitation), v (solid volume), vl (liquid volume) and snow (snow)
 }
 \description{
 Snow routine with P and T data

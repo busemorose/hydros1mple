@@ -1,14 +1,22 @@
 #' Run the snow routine with P and T data
 #'
-#' @param precip A numeric vector for precipitation.
+#' @param precip A numeric vector for precipitation
 #' @param temp A numeric vector for temperature
-#' @param param A numeric vector for model parameters: 1. Ts = threshold temperature [C]; 2. MF = melt factor [mm/C]; 3. CFR = refreezing factor [-]; 4. CWHv= Water holding capacity of snow [-]
-#' @param subcatchment_table A file path to a subctachment table.
+#' @param param A numeric vector for model parameters: 1. Ts = threshold temperature [C]; 2. MF = melt factor [mm/C]; 3. CFR = refreezing factor [-]; 4. CWHv= Water holding capacity of snow [-]; 5. RC = radiation coefficient [-]
+#' @param subcatchment_table A file path to a subctachment table
+#' @param srad A numeric vector for clear-sky solar radiation
+#' @param timestep A string vector for specifying timestep, either "D" for daily or "H" for hourly
 #'
-#' @return A vector of the output of the snow routine (Psr).
+#' @return A vector of the output of the snow routine (Psr)
 #' @export
 
-run_snow_routine <- function(precip, temp, param, subcatchment_table = NULL) {
+run_snow_routine <- function(precip, temp, param, subcatchment_table = NULL, srad = NULL, timestep = "D") {
+
+  # if timestep daily, solar radiation = 0
+  if (timestep == "D") {
+    param[5] <- 0
+    srad <- rep(0, length(1:length(prec)))
+  }
 
   # check if subcatchment table exists or not
   if (!is.null(subcatchment_table)) {
@@ -30,7 +38,7 @@ run_snow_routine <- function(precip, temp, param, subcatchment_table = NULL) {
       temp_sub <- temp + subcatchment_table$temp_shift[i]
 
       # calculate snow routine
-      snow_routine_results <- snow_routine(temp_sub, precip, param)
+      snow_routine_results <- snow_routine(temp_sub, precip, srad, param)
 
       # calculate snow routine output with corresponding proportion with proportion value
       subc_results[[i]] <- snow_routine_results$P * subcatchment_table$proportion[i]
@@ -43,7 +51,7 @@ run_snow_routine <- function(precip, temp, param, subcatchment_table = NULL) {
 
   } else {
     # calculate snow routine
-    snow_routine_results <- snow_routine(temp, precip, param)
+    snow_routine_results <- snow_routine(temp, precip, srad, param)
 
     # get snow routine output Psr
     Psr <- snow_routine_results$P

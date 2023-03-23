@@ -1,13 +1,14 @@
 #' Snow routine with P and T data
 #'
-#' @param precip A numeric vector for precipitation.
+#' @param precip A numeric vector for precipitation
 #' @param temp A numeric vector for temperature
+#' @param srad A numeric vector for clear-sky solar radiation
 #' @param param A numeric vector for model parameters: 1. Ts = threshold temperature [C]; 2. MF = melt factor [mm/C]; 3. CFR = refreezing factor [-]; 4. CWHv= Water holding capacity of snow [-]
 #'
-#' @return A list of the output of the snow routine, with P (redistributed precipitation), v (solid volume), vl (liquid volume) and snow (snow).
+#' @return A list of the output of the snow routine, with P (redistributed precipitation), v (solid volume), vl (liquid volume) and snow (snow)
 #' @export
 
-snow_routine <- function(temp, prec, param) {
+snow_routine <- function(temp, prec, srad, param) {
 
   #---------------------
   # Preparing parameters
@@ -17,6 +18,7 @@ snow_routine <- function(temp, prec, param) {
   MF <- param[2] # melt factor (mm/C)
   CFR <- param[3] # refreezing factor (-)
   CWH <- param[4] # water holding capacity of snow (-)
+  RC <- param[5] # radiation coefficient (-)
 
   N <- 1:length(prec) # length of the time series
 
@@ -36,7 +38,7 @@ snow_routine <- function(temp, prec, param) {
 
   for (t in rep(N)) {
 
-    m[t] <- min((MF * Ta[t]), v[t])
+    m[t] <- min((MF * Ta[t] + RC * srad[t] * Ta[t]), v[t])
     rfz[t] <- min(CFR * MF * Tn[t], vl[t])
 
     # snowpack dynamics: solid component
