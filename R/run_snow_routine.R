@@ -15,7 +15,7 @@ run_snow_routine <- function(precip, temp, param, subcatchment_table = NULL, sra
   # if timestep daily, solar radiation = 0
   if (timestep == "D") {
     param[5] <- 0
-    srad <- rep(0, length(1:length(prec)))
+    srad <- rep(0, length(1:length(precip)))
   }
 
   # check if subcatchment table exists or not
