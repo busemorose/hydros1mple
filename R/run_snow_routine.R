@@ -3,14 +3,16 @@
 #' @param precip A numeric vector for precipitation
 #' @param temp A numeric vector for temperature
 #' @param param A numeric vector for model parameters: 1. Ts = threshold temperature [C]; 2. MF = melt factor [mm/C]; 3. CFR = refreezing factor [-]; 4. CWHv= Water holding capacity of snow [-]; 5. RC = radiation coefficient [-]
+#' @param timestep A string vector for specifying timestep, either "D" for daily or "H" for hourly
 #' @param subcatchment_table A file path to a subctachment table
 #' @param srad A numeric vector for clear-sky solar radiation
-#' @param timestep A string vector for specifying timestep, either "D" for daily or "H" for hourly
 #'
 #' @return A vector of the output of the snow routine (Psr)
 #' @export
 
-run_snow_routine <- function(precip, temp, param, subcatchment_table = NULL, srad = NULL, timestep = "D") {
+run_snow_routine <- function(precip, temp, param, timestep, subcatchment_table = NULL, srad = NULL) {
+
+  if (!(timestep %in% c("D", "H"))) stop('Timestep must be either "D" for daily or "H" for hourly timestep')
 
   # if timestep daily, solar radiation = 0
   if (timestep == "D") {
