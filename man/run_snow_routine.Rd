@@ -8,9 +8,9 @@ run_snow_routine(
   precip,
   temp,
   param,
+  timestep,
   subcatchment_table = NULL,
-  srad = NULL,
-  timestep = "D"
+  srad = NULL
 )
 }
 \arguments{
@@ -20,11 +20,11 @@ run_snow_routine(
 
 \item{param}{A numeric vector for model parameters: 1. Ts = threshold temperature \link{C}; 2. MF = melt factor \link{mm/C}; 3. CFR = refreezing factor \link{-}; 4. CWHv= Water holding capacity of snow \link{-}; 5. RC = radiation coefficient \link{-}}
 
+\item{timestep}{A string vector for specifying timestep, either "D" for daily or "H" for hourly}
+
 \item{subcatchment_table}{A file path to a subctachment table}
 
 \item{srad}{A numeric vector for clear-sky solar radiation}
-
-\item{timestep}{A string vector for specifying timestep, either "D" for daily or "H" for hourly}
 }
 \value{
 A vector of the output of the snow routine (Psr)
