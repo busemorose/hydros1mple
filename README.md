@@ -32,3 +32,5 @@ library(hydros1mple)
 - `score()`: calculate different performance criteria between sim and obs
 - `sample_color()`: get *n* random colors with or without including grey shades
 - `km_properties()`: extract information from KarstMod *.properties* files
+- `cdf()`: cumulative distribution function of a variable
+- `insight()`: helping function for analysing sim/obs discharge from hydrological models
