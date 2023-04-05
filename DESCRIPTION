@@ -2,22 +2,24 @@ Package: hydros1mple
 Title: Simple functions for hydrological data
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Guillaume",
-           family = "Cinkus",
-           role = c("aut", "cre"),
-           email = "guillaume.cinkus@umontpellier.fr",
+    person("Guillaume", "Cinkus", , "guillaume.cinkus@umontpellier.fr", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-2877-6551"))
 Description: hydros1mple allows to make some graphs and calculate PET.
 License: MIT + file LICENSE
+Depends: 
+    R (>= 2.10)
+Imports:
+    dplyr,
+    ggplot2 (>= 3.0.0),
+    lubridate,
+    plotly,
+    purrr,
+    Rdpack,
+    scales,
+    tidyr
+RdMacros: 
+    Rdpack
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
-RdMacros: Rdpack
-Depends: 
-    R (>= 2.10)
-Imports:
-    lubridate,
-    ggplot2 (>= 3.0.0),
-    dplyr,
-    Rdpack
