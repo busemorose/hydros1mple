@@ -23,6 +23,8 @@
 
 insight <- function(date, sim, obs, na.rm = FALSE, interactive = FALSE) {
 
+  library(scales)
+
   export <- list()
 
   # 1. Daily hydrograph
