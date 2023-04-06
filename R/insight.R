@@ -29,8 +29,8 @@ insight <- function(date, sim, obs, na.rm = FALSE, interactive = FALSE) {
     tidyr::pivot_longer(c(sim, obs)) |>
     ggplot(aes(date, value, color = name)) +
     geom_line() +
-    scale_color_manual(name = "", values = c("obs" = cblind_bw_palette[1],
-                                             "sim" = cblind_bw_palette[3])) +
+    scale_color_manual(name = "", values = c("obs" = hydros1mple::cblind_bw_palette[1],
+                                             "sim" = hydros1mple::cblind_bw_palette[3])) +
     {if (!interactive) ylab(expression(paste("Discharge [L"^3~T^-1, "]")))} +
     theme_bw(base_size = 16) +
     theme(legend.position = "bottom",
@@ -53,8 +53,8 @@ insight <- function(date, sim, obs, na.rm = FALSE, interactive = FALSE) {
     ggplot(aes(month, value, fill = name)) +
     geom_bar(stat = "identity", position = "dodge") +
     scale_x_continuous(labels = month.abb, breaks = 1:12) +
-    scale_fill_manual(name = "", values = c("obs" = cblind_bw_palette[1],
-                                            "sim" = cblind_bw_palette[3])) +
+    scale_fill_manual(name = "", values = c("obs" = hydros1mple::cblind_bw_palette[1],
+                                            "sim" = hydros1mple::cblind_bw_palette[3])) +
     ylab(expression(paste("Mean discharge [L"^3~T^-1, "]"))) +
     theme_bw(base_size = 16) +
     theme(legend.position = "bottom",
@@ -67,8 +67,8 @@ insight <- function(date, sim, obs, na.rm = FALSE, interactive = FALSE) {
     dplyr::summarise(value = mean(value, na.rm = na.rm)) |>
     ggplot(aes(as.character(year), value, fill = name)) +
     geom_bar(stat = "identity", position = "dodge") +
-    scale_fill_manual(name = "", values = c("obs" = cblind_bw_palette[1],
-                                            "sim" = cblind_bw_palette[3])) +
+    scale_fill_manual(name = "", values = c("obs" = hydros1mple::cblind_bw_palette[1],
+                                            "sim" = hydros1mple::cblind_bw_palette[3])) +
     ylab(expression(paste("Mean discharge [L"^3~T^-1, "]"))) +
     theme_bw(base_size = 16) +
     theme(legend.position = "bottom",
@@ -80,7 +80,7 @@ insight <- function(date, sim, obs, na.rm = FALSE, interactive = FALSE) {
     ggplot(aes(name, value, fill = name)) +
     geom_boxplot() +
     scale_fill_manual(name = "", values = c("obs" = "white",
-                                            "sim" = cblind_bw_palette[3])) +
+                                            "sim" = hydros1mple::cblind_bw_palette[3])) +
     ylab(expression(paste("Mean discharge [L"^3~T^-1, "]"))) +
     theme_bw(base_size = 16) +
     theme(legend.position = "bottom",
@@ -102,8 +102,8 @@ insight <- function(date, sim, obs, na.rm = FALSE, interactive = FALSE) {
     ggplot(aes(prob_ex, value, color = name)) +
     geom_line() +
     scale_x_continuous(trans = c("log10", "reverse")) +
-    scale_color_manual(name = "", values = c("obs" = cblind_bw_palette[1],
-                                             "sim" = cblind_bw_palette[3])) +
+    scale_color_manual(name = "", values = c("obs" = hydros1mple::cblind_bw_palette[1],
+                                             "sim" = hydros1mple::cblind_bw_palette[3])) +
     xlab("Probability exceedance") +
     ylab(expression(paste("Discharge [L"^3~T^-1, "]"))) +
     theme_bw(base_size = 16) +
