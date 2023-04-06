@@ -15,6 +15,7 @@
 #' - cdf: The cumulative distribution function of discharge
 #' @export
 #' @import scales
+#' @import ggplot2
 #'
 #' @examples
 #' data(KarstMod_dataset)
@@ -108,5 +109,7 @@ insight <- function(date, sim, obs, na.rm = FALSE, interactive = FALSE) {
     ylab(expression(paste("Discharge [L"^3~T^-1, "]"))) +
     theme_bw(base_size = 16) +
     theme(legend.position = "bottom")
+
+  return(export)
 
 }
