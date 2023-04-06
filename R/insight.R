@@ -102,7 +102,7 @@ insight <- function(date, sim, obs, na.rm = FALSE, interactive = FALSE) {
     tidyr::pivot_longer(c(sim, obs)) |>
     ggplot(aes(prob_ex, value, color = name)) +
     geom_line() +
-    scale_x_continuous(trans = c("log10", "reverse")) +
+    scale_x_continuous(trans = scales::compose_trans("log10", "reverse")) +
     scale_color_manual(name = "", values = c("obs" = hydros1mple::cblind_bw_palette[1],
                                              "sim" = hydros1mple::cblind_bw_palette[3])) +
     xlab("Probability exceedance") +
