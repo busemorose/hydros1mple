@@ -84,7 +84,7 @@ insight <- function(date, sim, obs, na.rm = FALSE, interactive = FALSE) {
     geom_boxplot() +
     scale_fill_manual(name = "", values = c("obs" = "white",
                                             "sim" = hydros1mple::cblind_bw_palette[3])) +
-    ylab(expression(paste("Mean discharge [L"^3~T^-1, "]"))) +
+    ylab(expression(paste("Discharge [L"^3~T^-1, "]"))) +
     theme_bw(base_size = 16) +
     theme(legend.position = "bottom",
           axis.text.x = element_blank(),
