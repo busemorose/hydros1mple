@@ -35,3 +35,4 @@ library(hydros1mple)
 - `cdf()`: cumulative distribution function of a variable
 - `insight()`: helping function for analysing sim/obs discharge from hydrological models
 - `score_year()`: generate plot to evaluate a model by hydrological year on different subregimes
+- `density_year()`: generate plot to show the density of criterion score by hydrological year

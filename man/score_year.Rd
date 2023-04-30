@@ -13,7 +13,8 @@ score_year(
   hf_quantile = 0.9,
   crit = c("NSE", "KGE", "rpearson", "rspearman", "KGE_m", "KGE_m2", "KGENP", "LME",
     "LCE"),
-  sf = c(1, 1, 1)
+  sf = c(1, 1, 1),
+  rel_heights = c(1, 0.9, 1.55)
 )
 }
 \arguments{
@@ -32,9 +33,11 @@ score_year(
 \item{crit}{A string value corresponding to the desired performance criterion for the evaluation.}
 
 \item{sf}{A numeric vector for specifying scaling factors if needed for correlation, variability and bias, respectively. Default values are 1-1-1.}
+
+\item{rel_heights}{A numeric vector for specifying the relative height of each panel.}
 }
 \value{
-A plot
+A plot. Best export dimensions for default rel_heights are width = 8, height = 8.
 }
 \description{
 Generate plot to evaluate a model by hydrological year on different subregimes

@@ -3,6 +3,7 @@
 export(PET)
 export(blank_ggplot_piper)
 export(cdf)
+export(density_year)
 export(import_km)
 export(insight)
 export(km_properties)
