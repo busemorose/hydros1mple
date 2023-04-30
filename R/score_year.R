@@ -120,6 +120,6 @@ score_year <- function(date, sim, obs, month_hyear = 9, lf_quantile = 0.1, hf_qu
 
   # final plot
   cowplot::plot_grid(plot_h, plot_l, plot_all,
-                     align = "v", ncol = 1, rel_heights = c(1, 0.84, 1.9))
+                     align = "v", ncol = 1, rel_heights = c(1, 0.92, 1.45))
 
 }
