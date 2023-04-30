@@ -4,6 +4,7 @@
 #' @param sim A numeric vector of simulated time series.
 #' @param obs A numeric vector of observed time series.
 #' @param interval A numeric value corresponding to the desired class interval.
+#' @param freq A string specifying the frequence of analysis, either "hyear" for hydrological year or "month".
 #' @param month_hyear A numeric value corresponding to the first month of the hydrological year.
 #' @param crit A string value corresponding to the desired performance criterion for the evaluation.
 #' @param sf A numeric vector for specifying scaling factors if needed for correlation, variability and bias, respectively. Default values are 1-1-1.
@@ -16,16 +17,17 @@
 #'
 #' @examples
 #' data(KarstMod_dataset)
-#' density_year(KarstMod_dataset$date, KarstMod_dataset$QobsS + runif(365, -2, +10), KarstMod_dataset$QobsS, interval = 10)
+#' score_density(KarstMod_dataset$date, KarstMod_dataset$QobsS + runif(365, -2, +10), KarstMod_dataset$QobsS, interval = 10)
 
-density_year <- function(date, sim, obs, interval, month_hyear = 9,
-                         crit = c("NSE", "KGE", "rpearson", "rspearman", "KGE_m", "KGE_m2", "KGENP", "LME", "LCE"),
-                         sf = c(1, 1, 1),
-                         bar_width = 0.048,
-                         palette = c("#eff3ff", "#2473B6")) {
+score_density <- function(date, sim, obs, interval, freq = c("hyear", "month"), month_hyear = 9,
+                          crit = c("NSE", "KGE", "rpearson", "rspearman", "KGE_m", "KGE_m2", "KGENP", "LME", "LCE"),
+                          sf = c(1, 1, 1),
+                          bar_width = 0.048,
+                          palette = c("#eff3ff", "#2473B6")) {
 
   # Get output format
   crit <- match.arg(crit)
+  freq <- match.arg(freq)
 
   # Create palette
   pal <- colorRampPalette(colors = palette)
@@ -34,14 +36,25 @@ density_year <- function(date, sim, obs, interval, month_hyear = 9,
   model <- data.frame(date, sim, obs)
 
   # Calculate hydrological year and mean annual discharges
-  data <- model |>
-    dplyr::mutate(year = lubridate::year(date),
-                  month = lubridate::month(date),
-                  hyear = dplyr::case_when(month < month_hyear ~ year - 1,
-                                           TRUE ~ year)) |>
-    dplyr::group_by(hyear) |>
-    dplyr::summarise(mean = mean(obs, na.rm = TRUE),
-                     score = hydros1mple::score(sim, obs, crit = crit, sf = sf))
+  if (freq == "hyear") {
+    data <- model |>
+      dplyr::mutate(year = lubridate::year(date),
+                    month = lubridate::month(date),
+                    hyear = dplyr::case_when(month < month_hyear ~ year - 1,
+                                             TRUE ~ year)) |>
+      dplyr::group_by(!!sym(freq)) |>
+      dplyr::summarise(mean = mean(obs, na.rm = TRUE),
+                       score = hydros1mple::score(sim, obs, crit = crit, sf = sf))
+  } else {
+    data <- model |>
+      dplyr::mutate(year = lubridate::year(date),
+                    month = lubridate::month(date),
+                    hyear = dplyr::case_when(month < month_hyear ~ year - 1,
+                                             TRUE ~ year)) |>
+      dplyr::group_by(!!sym(freq), year) |>
+      dplyr::summarise(mean = mean(obs, na.rm = TRUE),
+                       score = hydros1mple::score(sim, obs, crit = crit, sf = sf))
+  }
 
   # Define classes for discharges and scores
   class <- data |>
@@ -82,7 +95,9 @@ density_year <- function(date, sim, obs, interval, month_hyear = 9,
                              1 - tick_offset)) +
     xlab(crit) +
     ylab("Density") +
-    ggtitle(paste0("Model performance per hydrological year (", month.name[month_hyear], ")")) +
+    {if (freq == "hyear") ggtitle(paste0("Model performance per hydrological year (",
+                                         month.name[month_hyear], ")"))} +
+    {if (freq == "month") ggtitle("Model performance per month per year")} +
     theme_bw(base_size = 16) +
     theme(legend.position = "bottom",
           panel.grid = element_blank()) +
