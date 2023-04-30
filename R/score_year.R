@@ -112,14 +112,14 @@ score_year <- function(date, sim, obs, month_hyear = 9, lf_quantile = 0.1, hf_qu
     dplyr::left_join(x_mean, by = "hyear")
 
   plot_all <- q_plot(x) +
+    xlab(paste0("Hydrological year starting from ", month.name[month_hyear])) +
     ylab(paste0(crit, "\n", "Q")) +
     theme_bw(base_size = 16) +
-    theme(axis.title.x = element_blank(),
-          plot.margin = margin(-8, 8, 8, 8, "pt"),
+    theme(plot.margin = margin(-8, 8, 8, 8, "pt"),
           legend.position = "bottom")
 
   # final plot
   cowplot::plot_grid(plot_h, plot_l, plot_all,
-                     align = "v", ncol = 1, rel_heights = c(1, 1, 1.5))
+                     align = "v", ncol = 1, rel_heights = c(1, 0.84, 1.9))
 
 }
