@@ -97,7 +97,7 @@ score_density <- function(date, sim, obs, interval, freq = c("hyear", "month"), 
     ylab("Density") +
     {if (freq == "hyear") ggtitle(paste0("Model performance per hydrological year (",
                                          month.name[month_hyear], ")"))} +
-    {if (freq == "month") ggtitle("Model performance per month per year")} +
+    {if (freq == "month") ggtitle("Model performance per month")} +
     theme_bw(base_size = 16) +
     theme(legend.position = "bottom",
           panel.grid = element_blank()) +
