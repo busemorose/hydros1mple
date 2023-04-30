@@ -10,7 +10,7 @@
 #' @param sf A numeric vector for specifying scaling factors if needed for correlation, variability and bias, respectively. Default values are 1-1-1.
 #' @param rel_heights A numeric vector for specifying the relative height of each panel.
 #'
-#' @return A plot
+#' @return A plot. Best export dimensions for default rel_heights are width = 8, height = 8.
 #' @export
 #' @import ggplot2
 #'
