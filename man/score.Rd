@@ -36,7 +36,7 @@ Calculate performance criteria scores between a simulated and observed time seri
 \examples{
 data(KarstMod_dataset)
 obs <- KarstMod_dataset$QobsS
-sim <- obs + runif(nrow(KarstMod_dataset), 0, sd(KarstMod_dataset)) # Synthetic sim
+sim <- obs + runif(nrow(KarstMod_dataset), 0, sd(obs)) # Synthetic sim
 
 score(sim, obs, crit = c("NSE", "KGE", "KGE_m"), sf = c(2, 1, 1), na.rm = FALSE)
 }

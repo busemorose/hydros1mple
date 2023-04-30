@@ -39,7 +39,7 @@ PET <- function(date, t, method = c("oudin2005", "hargreaves_samani1985", "turc1
 
   # Calculate extraterrestrial radiation
 
-  if (is.null(latitude) & !(method %in% c("haude1954")))
+  if (is.null(latitude) && !(method %in% c("haude1954")))
     stop("Latitude must be specified.")
 
   latrad <- (latitude * pi) / 180 # conversion in rad

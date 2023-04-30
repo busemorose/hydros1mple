@@ -15,6 +15,7 @@ Imports:
     cowplot,
     plotly,
     magrittr,
+    zoo,
     purrr,
     Rdpack,
     scales,

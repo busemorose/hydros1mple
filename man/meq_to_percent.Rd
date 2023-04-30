@@ -30,5 +30,5 @@ data(pc_data)
 pc_data_meq <- mgl_to_meq(pc_data, ions = c("Ca", "Mg", "Na", "K", "SO4", "Cl", "HCO3"))
 
 # Define anions argument to exclude "CO3" which is absent in this dataset
-meq_to_percent(pc_data, anions = c("Cl", "SO4", "HCO3"))
+meq_to_percent(pc_data_meq, anions = c("Cl", "SO4", "HCO3"))
 }
