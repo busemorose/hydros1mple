@@ -35,7 +35,7 @@ score_year <- function(date, sim, obs, month_hyear = 9, lf_quantile = 0.1, hf_qu
                                              -1,
                                              min(df$score, na.rm = TRUE))),
                                1)) +
-      scale_fill_gradient(name = expression(Q[mean]), low = "white", high = "darkblue",
+      scale_fill_gradient(name = expression(Q[mean]), low = "#eff3ff", high = "#2473B6",
                           guide = guide_colorbar(frame.colour = "black",
                                                  frame.linewidth = 1,
                                                  ticks = TRUE,
