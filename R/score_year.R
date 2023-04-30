@@ -8,6 +8,7 @@
 #' @param hf_quantile A numeric value corresponding to the high flow threshold (higher than).
 #' @param crit A string value corresponding to the desired performance criterion for the evaluation.
 #' @param sf A numeric vector for specifying scaling factors if needed for correlation, variability and bias, respectively. Default values are 1-1-1.
+#' @param rel_heights A numeric vector for specifying the relative height of each panel.
 #'
 #' @return A plot
 #' @export
@@ -19,7 +20,8 @@
 
 score_year <- function(date, sim, obs, month_hyear = 9, lf_quantile = 0.1, hf_quantile = 0.9,
                        crit = c("NSE", "KGE", "rpearson", "rspearman", "KGE_m", "KGE_m2", "KGENP", "LME", "LCE"),
-                       sf = c(1, 1, 1)) {
+                       sf = c(1, 1, 1),
+                       rel_heights = c(1, 0.9, 1.55)) {
 
   # Plot function
   q_plot <- function(df) {
@@ -120,6 +122,6 @@ score_year <- function(date, sim, obs, month_hyear = 9, lf_quantile = 0.1, hf_qu
 
   # final plot
   cowplot::plot_grid(plot_h, plot_l, plot_all,
-                     align = "v", ncol = 1, rel_heights = c(1, 0.92, 1.45))
+                     align = "v", ncol = 1, rel_heights = rel_heights)
 
 }
