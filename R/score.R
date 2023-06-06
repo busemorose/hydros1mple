@@ -100,7 +100,7 @@ score <- function(sim,
   if ("LCE" %in% crit)
     LCE <- 1 - sqrt(((rpearson * alpha - 1) ^ 2 + (rpearson / alpha - 1) ^ 2 + (beta - 1) ^ 2))
   if ("B_ratio" %in% crit)
-    B_ratio <- min(c(B_pos, B_neg) / max(c(B_pos, B_neg)))
+    B_ratio <- min(c(B_pos, B_neg)) / max(c(B_pos, B_neg))
   if ("B_vol" %in% crit)
     B_vol <- ((B_pos + B_neg) / q_sum) * 100
 
