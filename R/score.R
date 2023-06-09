@@ -19,7 +19,10 @@
 
 score <- function(sim,
                   obs,
-                  crit = c("NSE", "KGE", "bias", "rpearson", "rspearman", "BE", "C2M", "KGE_m", "KGE_m2", "KGENP", "LME", "LCE", "beta", "alpha", "gamma", "beta_n", "B_ratio", "B_vol"),
+                  crit = c("NSE", "BE", "C2M", "rpearson", "rspearman",
+                           "KGE", "KGE_m", "KGE_m2", "KGENP", "LME", "LCE",
+                           "KGE_abs", "KGE_m_abs", "KGENP_abs",
+                           "bias", "beta", "beta_abs", "alpha", "gamma", "beta_n", "beta_ratio"),
                   sf = c(1, 1, 1),
                   na.rm = FALSE,
                   format = c("vector", "list")) {
@@ -65,11 +68,12 @@ score <- function(sim,
   beta <- mean_s / mean_o
   beta_n <- (mean_s - mean_o) / sd_o
 
-  # B_ratio and B_vol components
+  # beta_abs and beta_ratio components
   dif <- sim - obs
   q_sum <- sum(obs)
   B_pos <- abs(sum(dif[dif > 0]))
   B_neg <- abs(sum(dif[dif < 0]))
+  beta_abs <- sum(abs(dif)) / q_sum
 
   # Calculate performance criteria
   rpearson <- cor(sim, obs, method = "pearson")
@@ -82,11 +86,19 @@ score <- function(sim,
   if ("KGE" %in% crit)
     KGE <- 1 - sqrt(
       (sf[1] * (rpearson - 1)) ^ 2 + (sf[2] * (alpha - 1)) ^ 2 + (sf[3] * (beta - 1)) ^ 2
-      )
+    )
+  if ("KGE_abs" %in% crit)
+    KGE_abs <- 1 - sqrt(
+      (sf[1] * (rpearson - 1)) ^ 2 + (sf[2] * (alpha - 1)) ^ 2 + (sf[3] * beta_abs) ^ 2
+    )
   if ("KGE_m" %in% crit)
     KGE_m <- 1 - sqrt(
       (sf[1] * (rpearson - 1)) ^ 2 + (sf[2] * (gamma - 1)) ^ 2 + (sf[3] * (beta - 1)) ^ 2
-      )
+    )
+  if ("KGE_m_abs" %in% crit)
+    KGE_m_abs <- 1 - sqrt(
+      (sf[1] * (rpearson - 1)) ^ 2 + (sf[2] * (gamma - 1)) ^ 2 + (sf[3] * beta_abs) ^ 2
+    )
   if ("KGE_m2" %in% crit)
     KGE_m2 <- 1 - sqrt(
       (sf[1] * (rpearson - 1)) ^ 2 + (sf[2] * (alpha - 1)) ^ 2 + (sf[3] * beta_n) ^ 2
@@ -94,15 +106,17 @@ score <- function(sim,
   if ("KGENP" %in% crit)
     KGENP <-  1 - sqrt(
       (sf[1] * (rspearman - 1)) ^ 2 + (sf[2] * (alphaNP - 1)) ^ 2 + (sf[3] * (beta - 1)) ^ 2
-      )
+    )
+  if ("KGENP_abs" %in% crit)
+    KGENP_abs <-  1 - sqrt(
+      (sf[1] * (rspearman - 1)) ^ 2 + (sf[2] * (alphaNP - 1)) ^ 2 + (sf[3] * beta_abs) ^ 2
+    )
   if ("LME" %in% crit)
     LME <- 1 - sqrt(((rpearson * alpha - 1) ^ 2 + (beta - 1) ^ 2))
   if ("LCE" %in% crit)
     LCE <- 1 - sqrt(((rpearson * alpha - 1) ^ 2 + (rpearson / alpha - 1) ^ 2 + (beta - 1) ^ 2))
   if ("B_ratio" %in% crit)
     B_ratio <- min(c(B_pos, B_neg)) / max(c(B_pos, B_neg))
-  if ("B_vol" %in% crit)
-    B_vol <- ((B_pos + B_neg) / q_sum) * 100
 
   # Store desired criteria
   for (c in crit) {
