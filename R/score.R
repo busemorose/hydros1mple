@@ -22,7 +22,7 @@ score <- function(sim,
                   crit = c("NSE", "BE", "C2M", "rpearson", "rspearman",
                            "KGE", "KGE_m", "KGE_m2", "KGENP", "LME", "LCE",
                            "KGE_abs", "KGE_m_abs", "KGENP_abs",
-                           "bias", "beta", "beta_abs", "alpha", "gamma", "beta_n", "beta_ratio"),
+                           "bias", "MAE", "beta", "beta_abs", "alpha", "gamma", "beta_n", "CI"),
                   sf = c(1, 1, 1),
                   na.rm = FALSE,
                   format = c("vector", "list")) {
@@ -78,7 +78,8 @@ score <- function(sim,
   # Calculate performance criteria
   rpearson <- cor(sim, obs, method = "pearson")
   rspearman <- cor(sim, obs, method = "spearman")
-  if ("bias" %in% crit) bias <- mean_s - mean_o
+  bias <- mean_s - mean_o
+  MAE <- mean(abs(sim - obs))
   if ("BE" %in% crit) BE <- 1 - abs((sum_o - sum_s) / sum_o)
   if ("NSE" %in% crit || "C2M" %in% crit)
     NSE <- 1 - sum((sim - obs) ^ 2) / sum((obs - mean_o) ^ 2)
@@ -115,8 +116,8 @@ score <- function(sim,
     LME <- 1 - sqrt(((rpearson * alpha - 1) ^ 2 + (beta - 1) ^ 2))
   if ("LCE" %in% crit)
     LCE <- 1 - sqrt(((rpearson * alpha - 1) ^ 2 + (rpearson / alpha - 1) ^ 2 + (beta - 1) ^ 2))
-  if ("B_ratio" %in% crit)
-    B_ratio <- min(c(B_pos, B_neg)) / max(c(B_pos, B_neg))
+  if ("CI" %in% crit)
+    CI <- bias / MAE
 
   # Store desired criteria
   for (c in crit) {
