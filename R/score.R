@@ -19,7 +19,7 @@
 
 score <- function(sim,
                   obs,
-                  crit = c("NSE", "BE", "C2M", "rpearson", "rspearman",
+                  crit = c("NSE", "BE", "C2M", "rpearson", "rspearman", "RMSE",
                            "KGE", "KGE_m", "KGE_m2", "KGENP", "LME", "LCE",
                            "KGE_abs", "KGE_m_abs", "KGENP_abs",
                            "bias", "MAE", "beta", "beta_abs", "alpha", "gamma", "beta_n", "CI"),
@@ -84,6 +84,7 @@ score <- function(sim,
   if ("NSE" %in% crit || "C2M" %in% crit)
     NSE <- 1 - sum((sim - obs) ^ 2) / sum((obs - mean_o) ^ 2)
   if ("C2M" %in% crit) C2M <- NSE / (2 - NSE)
+  if ("RMSE" %in% crit) RMSE <- sqrt(sum((sim - obs) ^ 2) / length(obs))
   if ("KGE" %in% crit)
     KGE <- 1 - sqrt(
       (sf[1] * (rpearson - 1)) ^ 2 + (sf[2] * (alpha - 1)) ^ 2 + (sf[3] * (beta - 1)) ^ 2
