@@ -7,8 +7,9 @@
 score(
   sim,
   obs,
-  crit = c("NSE", "KGE", "bias", "rpearson", "rspearman", "BE", "C2M", "KGE_m", "KGE_m2",
-    "KGENP", "LME", "LCE", "beta", "alpha", "gamma", "beta_n", "B_ratio", "B_vol"),
+  crit = c("NSE", "BE", "C2M", "rpearson", "rspearman", "RMSE", "KGE", "KGE_m", "KGE_m2",
+    "KGENP", "LME", "LCE", "KGE_abs", "KGE_m_abs", "KGENP_abs", "bias", "MAE", "beta",
+    "beta_abs", "alpha", "gamma", "beta_n", "CI"),
   sf = c(1, 1, 1),
   na.rm = FALSE,
   format = c("vector", "list")
