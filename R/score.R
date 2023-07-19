@@ -25,6 +25,7 @@ score <- function(sim,
                            "bias", "MAE", "beta", "beta_abs", "alpha", "gamma", "beta_n", "CI"),
                   sf = c(1, 1, 1),
                   na.rm = FALSE,
+                  allow_NA = FALSE,
                   format = c("vector", "list")) {
 
   # Get output format
@@ -40,6 +41,14 @@ score <- function(sim,
   # Check if sim and obs have the same length
   if(length(sim) != length(obs))
     stop("Invalid arguments: sim and obs must have the same length.")
+
+  # Remove NA values if allowed
+  if (allow_NA) {
+    na <- is.na(obs)
+
+    obs <- obs[!na]
+    sim <- sim[!na]
+  }
 
   # Calculate mean sim and obs
   mean_s = mean(sim, na.rm = na.rm)

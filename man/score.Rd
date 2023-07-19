@@ -12,6 +12,7 @@ score(
     "beta_abs", "alpha", "gamma", "beta_n", "CI"),
   sf = c(1, 1, 1),
   na.rm = FALSE,
+  allow_NA = FALSE,
   format = c("vector", "list")
 )
 }
