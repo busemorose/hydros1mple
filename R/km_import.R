@@ -8,9 +8,9 @@
 #'
 #' @examples
 #' path <- system.file("extdata", "KarstMod_dataset.txt", package = "hydros1mple")
-#' import_km(path = path)
+#' km_import(path = path)
 
-import_km <- function(path, version = c("3", "2")) {
+km_import <- function(path, version = c("3", "2")) {
 
   # Get matching arguments
   version <- match.arg(version)
