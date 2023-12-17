@@ -3,6 +3,7 @@
 export(PET)
 export(blank_ggplot_piper)
 export(cdf)
+export(date_consec)
 export(insight)
 export(km_date_index)
 export(km_import)
