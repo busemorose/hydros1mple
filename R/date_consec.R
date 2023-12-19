@@ -2,6 +2,7 @@
 #'
 #' @param date A date vector.
 #' @param interval A numeric value corresponding to the interval in days, hour, minute or seconds.
+#' @param unit A string value corresponding to time unit, e.g. "days", "hours", "mins".
 #'
 #' @return A dataframe.
 #' @import data.table

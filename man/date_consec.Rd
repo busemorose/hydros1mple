@@ -4,12 +4,14 @@
 \alias{date_consec}
 \title{Identify consecutive dates.}
 \usage{
-date_consec(date, interval)
+date_consec(date, interval, unit)
 }
 \arguments{
 \item{date}{A date vector.}
 
 \item{interval}{A numeric value corresponding to the interval in days, hour, minute or seconds.}
+
+\item{unit}{A string value corresponding to time unit, e.g. "days", "hours", "mins".}
 }
 \value{
 A dataframe.
