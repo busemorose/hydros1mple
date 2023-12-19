@@ -13,7 +13,7 @@
 
 date_consec <- function(date, interval) {
 
-  data.table::data.table(date)[, consec := data.table::rleid(cumsum(c(FALSE, diff(date) > 1)))
+  data.table::data.table(date)[, consec := data.table::rleid(cumsum(c(FALSE, diff(date) > interval)))
   ][, by = "consec",
     .(min_date = min(date),
       max_date = max(date))
