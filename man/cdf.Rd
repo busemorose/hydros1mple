@@ -4,10 +4,12 @@
 \alias{cdf}
 \title{Cumulative distribution function (CDF)}
 \usage{
-cdf(var)
+cdf(var, unique = FALSE)
 }
 \arguments{
 \item{var}{A numeric vector.}
+
+\item{unique}{A boolean for specifying if returning only unique values.}
 }
 \value{
 A list with two numeric vectors: 1. Probability exceedance and 2. Associated var value
