@@ -19,10 +19,11 @@
 
 score <- function(sim,
                   obs,
-                  crit = c("NSE", "BE", "C2M", "rpearson", "rspearman", "RMSE",
+                  crit = c("NSE", "NSE_log", "BE", "VE", "C2M", "rpearson", "rspearman", "RMSE",
                            "KGE", "KGE_m", "KGE_m2", "KGENP", "LME", "LCE",
                            "KGE_abs", "KGE_m_abs", "KGENP_abs",
-                           "bias", "MAE", "beta", "beta_abs", "alpha", "gamma", "beta_n", "CI"),
+                           "bias", "MAE", "beta", "beta_abs", "alpha", "gamma", "alphaNP", "beta_n",
+                           "CI", "MARE"),
                   sf = c(1, 1, 1),
                   na.rm = FALSE,
                   allow_NA = FALSE,
@@ -90,8 +91,11 @@ score <- function(sim,
   bias <- mean_s - mean_o
   MAE <- mean(abs(sim - obs))
   if ("BE" %in% crit) BE <- 1 - abs((sum_o - sum_s) / sum_o)
+  if ("VE" %in% crit) VE <- 1 - sum(abs(sim - obs)) / sum_o
   if ("NSE" %in% crit || "C2M" %in% crit)
     NSE <- 1 - sum((sim - obs) ^ 2) / sum((obs - mean_o) ^ 2)
+  if ("NSE_log" %in% crit || "C2M" %in% crit)
+    NSE_log <- 1 - sum((log10(sim) - log10(obs)) ^ 2) / sum((log10(obs) - mean(log10(obs), na.rm = na.rm)) ^ 2)
   if ("C2M" %in% crit) C2M <- NSE / (2 - NSE)
   if ("RMSE" %in% crit) RMSE <- sqrt(sum((sim - obs) ^ 2) / length(obs))
   if ("KGE" %in% crit)
@@ -128,6 +132,8 @@ score <- function(sim,
     LCE <- 1 - sqrt(((rpearson * alpha - 1) ^ 2 + (rpearson / alpha - 1) ^ 2 + (beta - 1) ^ 2))
   if ("CI" %in% crit)
     CI <- bias / MAE
+  if ("MARE" %in% crit)
+    MARE <- 1 - mean(abs((sim - obs) / obs))
 
   # Store desired criteria
   for (c in crit) {
