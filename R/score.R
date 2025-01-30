@@ -23,7 +23,7 @@ score <- function(sim,
                            "KGE", "KGE_m", "KGE_m2", "KGENP", "LME", "LCE",
                            "KGE_abs", "KGE_m_abs", "KGENP_abs",
                            "bias", "MAE", "beta", "beta_abs", "alpha", "gamma", "alphaNP", "beta_n",
-                           "CI", "MARE", "CI_new"),
+                           "CI", "MARE"),
                   sf = c(1, 1, 1),
                   na.rm = FALSE,
                   allow_NA = FALSE,
@@ -131,9 +131,7 @@ score <- function(sim,
   if ("LCE" %in% crit)
     LCE <- 1 - sqrt(((rpearson * alpha - 1) ^ 2 + (rpearson / alpha - 1) ^ 2 + (beta - 1) ^ 2))
   if ("CI" %in% crit)
-    CI <- bias / MAE
-  if ("CI_new" %in% crit)
-    CI_new <- (MAE - abs(bias)) / mean_o
+    CI <- (MAE - abs(bias)) / mean_o
   if ("MARE" %in% crit)
     MARE <- 1 - mean(abs((sim - obs) / obs))
 
