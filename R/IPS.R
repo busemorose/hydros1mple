@@ -150,8 +150,7 @@ IPS <- function(date,                   # Vector of dates
       IPS[[name]]$IPS[i_all] <- qnorm(cdf_function(rolling_vals[i_all]))
 
       # Add missing NAs in the resulting dt
-      IPS[[name]] <- IPS[[name]] |>
-        padr::pad()
+      IPS[[name]] <- suppressMessages(padr::pad(IPS[[name]]))
     }
   }
 
