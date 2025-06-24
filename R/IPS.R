@@ -52,6 +52,7 @@
 #'
 #' @import data.table
 #' @importFrom lubridate year month make_date
+#' @importFrom padr pad
 #' @importFrom stats density approxfun qnorm
 #' @export
 
@@ -147,6 +148,10 @@ IPS <- function(date,                   # Vector of dates
       # Step 5: Project cumulative probability onto standard normal distribution
       # Result is the IPS standardized index
       IPS[[name]]$IPS[i_all] <- qnorm(cdf_function(rolling_vals[i_all]))
+
+      # Add missing NAs in the resulting dt
+      IPS[[name]] <- IPS[[name]] |>
+        padr::pad()
     }
   }
 
