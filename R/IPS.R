@@ -148,10 +148,10 @@ IPS <- function(date,                   # Vector of dates
       # Step 5: Project cumulative probability onto standard normal distribution
       # Result is the IPS standardized index
       IPS[[name]]$IPS[i_all] <- qnorm(cdf_function(rolling_vals[i_all]))
-
-      # Add missing NAs in the resulting dt
-      IPS[[name]] <- suppressMessages(padr::pad(IPS[[name]]))
     }
+
+    # Add missing NAs in the resulting dt
+    IPS[[name]] <- suppressMessages(padr::pad(IPS[[name]]))
   }
 
   return(IPS)
