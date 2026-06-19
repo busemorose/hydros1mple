@@ -34,7 +34,7 @@ get_safran <- function(ctm_path,
                        safran_path = NULL,
                        maille_path = NULL,
                        epsg = 2154,
-                       show_map = TRUE) {
+                       show_map = FALSE) {
 
   # Get SAFRAN parameters ---------------------------------------------------
   info <- fromJSON("https://api.geosas.fr/edr/collections/safran-isba/")
