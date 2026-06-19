@@ -6,10 +6,10 @@
 \usage{
 get_safran(
   ctm_path,
-  safran_path = "data/safran.gpkg",
-  maille_path = "data/SIM2.kml",
+  safran_path = NULL,
+  maille_path = NULL,
   epsg = 2154,
-  show_map = FALSE
+  show_map = TRUE
 )
 }
 \arguments{
@@ -35,9 +35,7 @@ meteorological parameters proportional to each cell's area within the catchment.
 \examples{
 \dontrun{
 df <- get_safran(
-  ctm_path   = "data/bv_baget.shp",
-  safran_path = "data/safran.gpkg",
-  maille_path = "data/SIM2.kml"
+  ctm_path   = "my_catchment.shp"
 )
 }
 
