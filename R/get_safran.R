@@ -64,15 +64,15 @@ get_safran <- function(ctm_path,
   # Optionnal map -----------------------------------------------------------
   if (show_map) {
     p <- safran |>
-      dplyr::slice(st_intersects(ctm, safran)[[1]]) %>%
-      ggplot() +
+      dplyr::slice(sf::st_intersects(ctm, safran)[[1]]) |>
+      ggplot2::ggplot() +
       ggspatial::annotation_map_tile(zoom = 10, forcedownload = TRUE) +
-      geom_sf(alpha = 0.4) +
-      geom_sf(data = ctm, linewidth = 1, fill = "transparent") +
-      geom_sf_label(aes(label = cell)) +
+      ggplot2::geom_sf(alpha = 0.4) +
+      ggplot2::geom_sf(data = ctm, linewidth = 1, fill = "transparent") +
+      ggplot2::geom_sf_label(ggplot2::aes(label = cell)) +
       ggspatial::annotation_scale(location = "br", bar_cols = c("grey30", "white")) +
       ggspatial::annotation_north_arrow(location = "tr") +
-      theme_void()
+      ggplot2::theme_void()
     print(p)
   }
 
