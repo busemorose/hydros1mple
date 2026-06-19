@@ -33,14 +33,21 @@
 #'
 #' @export
 get_safran <- function(ctm_path,
-                       safran_path = "data/safran.gpkg",
-                       maille_path = "data/SIM2.kml",
+                       safran_path = NULL,
+                       maille_path = NULL,
                        epsg = 2154,
                        show_map = FALSE) {
 
   # Get SAFRAN parameters ---------------------------------------------------
   info <- fromJSON("https://api.geosas.fr/edr/collections/safran-isba/")
   params <- names(info$parameter_names) |> paste(collapse = ",")
+
+  if (is.null(safran_path)) {
+    safran_path <- system.file("extdata", "safran.gpkg", package = "hydros1mple")
+  }
+  if (is.null(maille_path)) {
+    maille_path <- system.file("extdata", "SIM2.kml", package = "hydros1mple")
+  }
 
   # Get mesh based on catchment area ----------------------------------------
   safran <- read_sf(safran_path) |>
